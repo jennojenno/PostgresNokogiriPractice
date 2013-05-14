@@ -29,6 +29,8 @@ class WikiImport < Nokogiri::XML::SAX::Document
     self.last_page = {}
     self.last_body = ""
     @output_file_count = 0
+    @title = ""
+    @body = ""
   end
   
   def start_document
@@ -37,18 +39,42 @@ class WikiImport < Nokogiri::XML::SAX::Document
   
   def end_document
     logger.debug "End document"
-  end
-  
-  def characters(c)
-   
+    
   end
 
   def start_element(name, attrs)
-    logger.debug "Found element #{name}"
+    #logger.debug "Found element #{name}"
+    case name
+    when "title"
+      @titleint = true
+      #logger.debug "Found element title"
+    when "timestamp"
+      @bodyint = true
+      #logger.debug "Found element body"
+    else
+      @titleint = false
+      @bodyint = false
+    end 
+
+
+  end
+  
+  def characters(c)
+    @title += c if @titleint 
+    @body += c if @bodyint
   end
   
   def end_element(name)
-    logger.debug "Finished element #{name}"
+
+    if name == "page"
+      puts @title
+      sql = File.open('data/mystuff.sql', 'w')
+      sql << "INSERT INTO articles(title, body) VALUES('#{@title}', '#{@body}');" 
+
+      @title = ""
+      @body = "" 
+      #self.last_page[:title] = self.last_body
+    end 
   end
   
   def method_missing(m, *args, &block)
