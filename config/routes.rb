@@ -1,7 +1,13 @@
 Wikisearch::Application.routes.draw do
   
+  #devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
   resources :articles 
+
+
   match 'wiki/:title' => 'articles#wiki'
+  match 'users/sign_up' => 'registrations#new'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -52,7 +58,7 @@ Wikisearch::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   end
   
   def wiki
-    @article = Article.find_by_title(params[:title])
+    @article = Article.find_by_title(params[:title].split("_").map {|t| t.titlecase }.join(" "))
     if @article
       render :template => 'articles/show'
     else

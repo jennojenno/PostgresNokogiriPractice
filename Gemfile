@@ -10,6 +10,7 @@ gem 'nokogiri'
 gem 'json'
 gem 'wikitext', '~> 2.1.1'
 gem 'pry'
+gem 'machinist', '>= 2.0.0.beta2'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -32,6 +33,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'carrierwave'
+gem 'devise'
+gem 'mini_magick'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

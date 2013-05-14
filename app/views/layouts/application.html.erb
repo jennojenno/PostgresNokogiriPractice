@@ -7,6 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div id="toolbar">
+	<% if user_signed_in? %>( <%= @user.email %> )
+	<%= image_tag current_user.avatar.thumb.url, :id => 'thumba' %> </div>
+	
+	<% else new_user_registration_path %>
+	<% end %> 
+</div> 
 
 <%= yield %>
 
