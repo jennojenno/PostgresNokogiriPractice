@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Artist:</b>
+  <%= @track.artist %>
+</p>
+
+<p>
+  <b>Wrong Artist 1:</b>
+  <%= @track.wrong_answer_1 %>
+</p>
+
+<p>
+  <b>Wrong Artist 2:</b>
+  <%= @track.wrong_answer_2 %>
+</p>
+
+<p>
+  <b>Wrong Artist 3:</b>
+  <%= @track.wrong_answer_3 %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @track.title %>
+</p>
+
+
+<!-- <audio controls="" name="media">
+	<source src="<%= @track.track_file %>">
+</audio> -->
+<div class="player">
+<%= image_tag 'play-button.gif', :id=>'play-button' %>
+<%= image_tag 'stop-button.gif', :id=>'stop-button' %>
+<div class="duration"></div>
+	<div class="seconds"></div>
+	</div>
+
+
+<script>
+soundManager.setup({
+	url: '/swf/',
+  flashVersion: 9, // optional: shiny features (default = 8)
+  // optional: ignore Flash where possible, use 100% HTML5 mode
+  // preferFlash: false,
+  onready: function() {
+  	soundManager.createSound({
+  		id: 'mySound',
+  		url: '<%= @track.track_file %>',
+  		autoLoad: true,
+  		autoPlay: false,
+  		onload: function() {
+  			//alert('The sound '+this.id+' loaded!');
+  		},
+  		whileplaying: function() {
+  			var minutes = Math.floor(seconds/60);
+  			var seconds = Math.round(this.position/1000);
+
+  			$('.duration').html(minutes);
+  			$('.seconds').html(seconds);
+  		},
+  		volume: 50
+  	});
+  }
+});
+</script>
+
+<p>
+<%= link_to 'Edit', edit_track_path(@track) %> |
+<%= link_to 'Back', tracks_path %>
+</p>

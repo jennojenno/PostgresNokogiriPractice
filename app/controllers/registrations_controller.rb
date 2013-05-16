@@ -4,7 +4,5 @@ class RegistrationsController < Devise::RegistrationsController
 		super
 	end 
 
-	# def edit
-	# 	redirect_to 'registrations#edit'
-	# end 
+
 end 

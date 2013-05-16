@@ -11,8 +11,16 @@
 <p class="alert"><%= alert %></p>
 
 <div id="toolbar">
-	<% if user_signed_in? %>( <%= @user.email %> )
-	<%= image_tag current_user.avatar.thumb.url, :id => 'thumba' %> </div>
+	<div class="search-box">
+		<%= form_tag search_path do %> 
+		<%= text_field_tag :search_box, nil, :id => "search-box" %> 
+		<%= submit_tag "search" %>
+		<% end %> 
+	</div>
+
+	<div id="insidetoolbar">
+	<% if user_signed_in? %>Signed in as <%#= @user.email %> 
+	<%= image_tag current_user.avatar.thumb.url, :id => 'thumba' %> </div></div>
 	
 	<% else new_user_registration_path %>
 	<% end %> 

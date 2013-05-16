@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514184817) do
+ActiveRecord::Schema.define(:version => 20130515161701) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(:version => 20130514184817) do
   end
 
   add_index "articles", ["title"], :name => "index_articles_on_title"
+
+  create_table "tracks", :force => true do |t|
+    t.string   "title"
+    t.string   "track_file"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "artist"
+    t.string   "wrong_answer_1"
+    t.string   "wrong_answer_2"
+    t.string   "wrong_answer_3"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
