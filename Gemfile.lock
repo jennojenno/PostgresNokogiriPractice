@@ -181,7 +181,7 @@ DEPENDENCIES
   json
   machinist (>= 2.0.0.beta2)
   mini_magick
-  mysql2 (= 0.3.12b5)
+  mysql2 (~> 0.3.12b5)
   nokogiri
   pg
   pry

@@ -31,14 +31,17 @@ class WikiImport < Nokogiri::XML::SAX::Document
     @output_file_count = 0
     @title = ""
     @body = ""
+    
   end
   
   def start_document
     logger.debug "Start document"
+    @sql = File.open('data/mdstuff.sql', 'w')
   end
   
   def end_document
     logger.debug "End document"
+    @sql.close
     
   end
 
@@ -48,7 +51,7 @@ class WikiImport < Nokogiri::XML::SAX::Document
     when "title"
       @titleint = true
       #logger.debug "Found element title"
-    when "timestamp"
+    when "text"
       @bodyint = true
       #logger.debug "Found element body"
     else
@@ -60,16 +63,17 @@ class WikiImport < Nokogiri::XML::SAX::Document
   end
   
   def characters(c)
-    @title += c if @titleint 
-    @body += c if @bodyint
+
+    @title = @title + c if @titleint 
+    @body = @body + c if @bodyint
   end
   
   def end_element(name)
 
     if name == "page"
       puts @title
-      sql = File.open('data/mystuff.sql', 'w')
-      sql << "INSERT INTO articles(title, body) VALUES('#{@title}', '#{@body}');" 
+      
+      @sql << "INSERT INTO articles(title, body, created_at, updated_at) VALUES('#{clean @title}', '#{clean @body}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);" 
 
       @title = ""
       @body = "" 

@@ -36,7 +36,7 @@ class TrackUploader < CarrierWave::Uploader::Base
     url = "http://developer.echonest.com/api/v4/artist/similar?api_key=Y3MG2UKAVGMYL8XPT&name=#{artistspacefix}&format=json&results=3&start=0"
     results = HTTParty.get(url)
     #binding.pry
-    model.wrong_answer_1, model.wrong_answer_2, model.wrong_answer_3 = results["response"]["artists"].sample(3).map {|a| a["name"]}
+    model.wrong_answer_1, model.wrong_answer_2, model.wrong_answer_3 = results["response"]["artists"].sample(3).map! {|a| a["name"]}
   end 
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

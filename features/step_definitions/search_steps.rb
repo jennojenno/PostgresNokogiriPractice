@@ -3,7 +3,7 @@ Given(/^a fascinating article about "(.*?)"$/) do |title|
 end
 
 Given(/^assuming the Sphinx index is up to date$/) do
-  ThinkingSphinx::Test.index
+  ThinkingSphinx::Test.start_with_autostop 
 end
 
 Given(/^I am on the homepage$/) do

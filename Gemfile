@@ -12,7 +12,7 @@ gem 'wikitext', '~> 2.1.1'
 gem 'pry'
 gem 'machinist', '>= 2.0.0.beta2'
 gem 'httparty'
-gem 'mysql2', '0.3.12b5'
+gem 'mysql2', '~> 0.3.12b5'
 gem 'thinking-sphinx', '~> 3.0.2'
 
 group :development, :test do
