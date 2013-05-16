@@ -3,6 +3,10 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
   end
+
+  def index
+    @articles = Article.limit(30).offset(1000)
+  end 
   
   def wiki
     @article = Article.find_by_title(params[:title].split("_").map {|t| t.titlecase }.join(" "))

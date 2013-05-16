@@ -14,6 +14,9 @@ gem 'machinist', '>= 2.0.0.beta2'
 gem 'httparty'
 gem 'mysql2', '~> 0.3.12b5'
 gem 'thinking-sphinx', '~> 3.0.2'
+gem 'thin'
+gem 'rack-mini-profiler', :group => :development
+gem 'will_paginate'
 
 group :development, :test do
   gem 'rspec-rails'
