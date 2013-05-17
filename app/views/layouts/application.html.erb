@@ -1,58 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Outdoorsy</title>
-
-
-  
+  <title>Wikisearch</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGWlVKhl5vwogbFLmGgZF5-EIh3WUfg-8&sensor=false">
-  </script>
-  <script type="text/javascript">
-
-$(document).ready(function() {
-    initMap();
-
-
-
-});
-   
-   
-
-       users = <%=raw(User.all.to_json) %>
-      <% if user_signed_in? %>
-      current_user = <%= raw(current_user.to_json) %>
-      currentuserfriends = <%=raw(current_user.friends.all.to_json) %>
-      <% end %>
-    </script> 
-
-
 </head>
-
 <body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
-<div id="header">
-  <div class="login">
-<%= link_to 'Sign Out',  destroy_user_session_path %>
-</div>
-  <div>
+<div id="toolbar">
+        <div class="search-box">
+                <%= form_tag search_path do %> 
+                <%= text_field_tag :term, nil, :id => "search_box" %> 
+                <%= submit_tag "search" %>
+                <% end %> 
+        </div>
 
+        <div id="insidetoolbar">
+                <% if user_signed_in? %>Signed in as <%#= @user.email %> 
+                <%= image_tag current_user.avatar.thumb.url, :id => 'thumba' %> </div></div>
 
-
+                <% else new_user_registration_path %>
+                <% end %> 
+        </div> 
 
 <%= yield %>
 
-<div class="logindetails">
-          <%= notice %>
-        <% if user_signed_in? %>
-          <div><%#= current_user.name %></div>
-          <% end %>
-      </div>
-
 </body>
 </html>
-
-<%#= javascript_include_tag :defaults %>
