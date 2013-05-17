@@ -15,5 +15,5 @@
 /log/*.log
 /tmp
 /data/*.xml
-/data
+/data/*.sql
 /public/uploads

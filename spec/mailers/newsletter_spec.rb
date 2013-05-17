@@ -10,7 +10,7 @@ describe Newsletter do
   			user.skip_confirmation!
   			user.save!
   			user }
-  			@members = User.all
+  			@members = User.all.map {|u| u.email }
 
   			#unregistered user 
   			User.make! 
