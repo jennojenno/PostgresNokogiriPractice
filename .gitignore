@@ -17,3 +17,5 @@
 /data/*.xml
 /data/*.sql
 /public/uploads
+/db/sphinx/development
+/db/sphinx/test
